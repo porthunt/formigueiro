@@ -5,6 +5,7 @@ import os
 from flask import Flask
 from persistance.connect import Connection
 from persistance.company.company import Company
+from persistance.campaign.campaign import Campaign
 
 app = Flask(__name__)
 app_name = 'FooBar'
@@ -26,6 +27,22 @@ def company(email=None):
         return Company(conn).retrieve(email=email)
     else:
         return Company(conn).retrieve()
+    
+@app.route('/api/campaign/id/<campaign_id>', methods=['GET'])
+@app.route('/api/campaign/name/<name>', methods=['GET'])
+@app.route('/api/campaign/category/<category>', methods=['GET'])
+@app.route('/api/campaign/author/<author>', methods=['GET'])
+def campaign(campaign_id=None, name=None, category=None, author=None):
+    if campaign_id is not None:
+        return Campaign(conn).retrieve(campaign_id=campaign_id)
+    elif name is not None:
+        return Campaign(conn).retrieve(name=name)
+    elif author is not None:
+        return Campaign(conn).retrieve(author=author)
+    elif category is not None:
+        return Campaign(conn).retrieve(category=category)
+    else:
+        return 'campaign not found'
 
 
 @app.route('/api/test-api')
@@ -37,12 +54,12 @@ def test_connection():
 
 
 @app.errorhandler(404)
-def page_not_found():
+def page_not_found(e):
     return 'api not found'
 
 
 @app.errorhandler(500)
-def internal_server_error():
+def internal_server_error(e):
     return 'API error'
 
 PORT = int(os.getenv('PORT', 8000))
