@@ -8,6 +8,19 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
 			replace: true,
 			reloadOnSearch: false
 		})
+
+		.when('/cadastro', {
+			templateUrl: 'app/components/signup/signUpView.html',
+			controller: "SignUpController",
+			replace: true,
+			reloadOnSearch: false
+		})
+		.when('/campanha', {
+			templateUrl: 'app/components/campaign/campaignView.html',
+			controller: "CampaignController",
+			replace: true,
+			reloadOnSearch: false
+		})
 		
 		// DEFAULT
 		.otherwise({
