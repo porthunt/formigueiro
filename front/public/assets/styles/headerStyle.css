@@ -1,0 +1,24 @@
+nav {
+	background-color: white !important;
+	/*box-shadow: none !important;*/
+}
+
+nav .brand-logo,
+nav ul a {
+	color: #000 !important;
+}
+
+.sub-nav-wrapper {
+	display: none;
+	max-height: 400px;
+	background-color: rgba(255, 255, 255, .9);
+}
+
+.card-title {
+	text-shadow: 0 0 5px rgba(0, 0, 0, .75);
+}
+
+.brand-logo img {
+	width: 60px;
+    vertical-align: sub;
+}
