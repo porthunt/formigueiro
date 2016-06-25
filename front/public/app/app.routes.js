@@ -15,9 +15,17 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
 			replace: true,
 			reloadOnSearch: false
 		})
+
 		.when('/campanha', {
 			templateUrl: 'app/components/campaign/campaignView.html',
 			controller: "CampaignController",
+			replace: true,
+			reloadOnSearch: false
+		})
+
+		.when('/', {
+			templateUrl: 'app/components/index/indexView.html',
+			controller: "IndexController",
 			replace: true,
 			reloadOnSearch: false
 		})

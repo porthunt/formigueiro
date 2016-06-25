@@ -9,6 +9,7 @@ nav ul a {
 }
 
 .sub-nav-wrapper {
+	display: none;
 	max-height: 400px;
 	background-color: rgba(255, 255, 255, .9);
 }
