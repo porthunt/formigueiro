@@ -23,3 +23,12 @@
 	height: 21px;
     border-radius: 10px;
 }
+
+.qtd-picker .input-field {
+	width: 70px;
+    display: inline-block;
+}
+
+.qtd-picker .input-field input {
+	text-align: center;
+}

@@ -16,7 +16,7 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
 			reloadOnSearch: false
 		})
 
-		.when('/campanha', {
+		.when('/campanha/:id', {
 			templateUrl: 'app/components/campaign/campaignView.html',
 			controller: "CampaignController",
 			replace: true,
@@ -29,7 +29,15 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
 			replace: true,
 			reloadOnSearch: false
 		})
-		
+
+		.when('/entrar', {
+			templateUrl: 'app/components/login/logInView.html',
+			controller: "LogInController",
+			replace: true,
+			reloadOnSearch: false
+		})
+
+
 		// DEFAULT
 		.otherwise({
 			redirectTo: '/',
