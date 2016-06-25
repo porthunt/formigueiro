@@ -1,0 +1,13 @@
+nav {
+	background-color: white !important;
+	/*box-shadow: none !important;*/
+}
+
+nav .brand-logo,
+nav ul a {
+	color: #000 !important;
+}
+
+.section .header {
+	color: #fff;
+}
