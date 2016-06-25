@@ -60,6 +60,7 @@ def page_not_found(e):
 
 @app.errorhandler(500)
 def internal_server_error(e):
+    conn.register_error(e)
     return 'API error'
 
 PORT = int(os.getenv('PORT', 8000))
