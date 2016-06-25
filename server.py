@@ -4,6 +4,7 @@ import os
 
 from flask import Flask
 from persistance.connect import Connection
+from persistance.company.company import Company
 
 app = Flask(__name__)
 app_name = 'FooBar'
@@ -18,7 +19,16 @@ def index():
     return 'Welcome to the {} API!'.format(app_name)
 
 
-@app.route('/api/test')
+@app.route('/api/company', methods=['GET'])
+@app.route('/api/company/<email>', methods=['GET'])
+def company(email=None):
+    if email is not None:
+        return Company(conn).retrieve(email=email)
+    else:
+        return Company(conn).retrieve()
+
+
+@app.route('/api/test-api')
 def test_connection():
     lst = list()
     for document in conn.test_connection():
@@ -27,13 +37,13 @@ def test_connection():
 
 
 @app.errorhandler(404)
-def page_not_found(e):
+def page_not_found():
     return 'api not found'
 
 
 @app.errorhandler(500)
-def internal_server_error(e):
-    return 'error accessing the API'
+def internal_server_error():
+    return 'API error'
 
 PORT = int(os.getenv('PORT', 8000))
 if __name__ == '__main__':
