@@ -6,6 +6,7 @@ from flask import Flask
 from persistance.connect import Connection
 from persistance.company.company import Company
 from persistance.campaign.campaign import Campaign
+from persistance.backer.backer import Backer
 
 app = Flask(__name__)
 app_name = 'FooBar'
@@ -27,7 +28,8 @@ def company(email=None):
         return Company(conn).retrieve(email=email)
     else:
         return Company(conn).retrieve()
-    
+
+
 @app.route('/api/campaign/id/<campaign_id>', methods=['GET'])
 @app.route('/api/campaign/name/<name>', methods=['GET'])
 @app.route('/api/campaign/category/<category>', methods=['GET'])
@@ -41,6 +43,17 @@ def campaign(campaign_id=None, name=None, category=None, author=None):
         return Campaign(conn).retrieve(author=author)
     elif category is not None:
         return Campaign(conn).retrieve(category=category)
+    else:
+        return 'campaign not found'
+
+
+@app.route('/api/backer/campaign_id/<campaign_id>', methods=['GET'])
+@app.route('/api/backer/company_id/<company_id>', methods=['GET'])
+def backer(campaign_id=None, company_id=None):
+    if campaign_id is not None:
+        return Backer(conn).retrieve(campaign_id=campaign_id)
+    elif company_id is not None:
+        return Backer(conn).retrieve(company_id=company_id)
     else:
         return 'campaign not found'
 

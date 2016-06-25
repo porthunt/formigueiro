@@ -12,6 +12,9 @@ Class Backer
 
 
 class Backer(object):
+    
+    def __init__(self, _conn):
+        self.conn = _conn
 
     def add(self, company_id, campaign_id, unit):
         pass
@@ -22,7 +25,7 @@ class Backer(object):
     def update(self, company_id, campaign_id, unit):
         pass
 
-    def retrieve(self, campaign_id, **kwargs):
+    def retrieve(self, **kwargs):
         response_buffer = StringIO()
         curl = pycurl.Curl()
         r_url = 'https://{}.cloudant.com/{}/_design/backer/_view/'.format(self.conn.host, self.conn.db)
@@ -31,8 +34,6 @@ class Backer(object):
             r_url += 'by_campaign_id?key="' + kwargs['campaign_id'] + '"'
         elif 'company_id' in kwargs:
             r_url += 'by_company_id?key="' + kwargs['company_id'] + '"'
-        else:
-            r_url += 'all'
 
         curl.setopt(curl.URL, r_url)
         curl.setopt(curl.USERPWD, '%s:%s' % (self.conn.user, self.conn.pwd))
