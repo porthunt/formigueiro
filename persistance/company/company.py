@@ -17,7 +17,7 @@ class Company(object):
     def __init__(self, _conn):
         self.conn = _conn
 
-    def add(self, _name, _city, _state, _cnpj, _telephone, _email):
+    def add(self, _name, _city, _state, _cnpj, _telephone, _email, **kwargs):
         pass
 
     def retrieve(self, **kwargs):

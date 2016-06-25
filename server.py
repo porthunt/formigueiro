@@ -23,7 +23,7 @@ def index():
 @app.route('/api/company/<email>', methods=['GET'])
 def company(email=None):
     if email is not None:
-        return Company(conn).retrieve(email='thom.agante@gmail.com')
+        return Company(conn).retrieve(email=email)
     else:
         return Company(conn).retrieve()
 
@@ -42,8 +42,8 @@ def page_not_found():
 
 
 @app.errorhandler(500)
-def internal_server_error(e):
-    return 'error accessing the API'
+def internal_server_error():
+    return 'API error'
 
 PORT = int(os.getenv('PORT', 8000))
 if __name__ == '__main__':
