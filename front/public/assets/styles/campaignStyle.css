@@ -1,0 +1,20 @@
+#campaign-page {
+	padding-top: 25px;
+}
+
+#campaign-page .parallax-container {
+	height: 100px;
+}
+
+#campaign-page .parallax-container .section {
+	padding-top: 0;
+}
+
+.product-image {
+	height: 300px;
+}
+
+#campaign-page .progress {
+	height: 21px;
+    border-radius: 10px;
+}
