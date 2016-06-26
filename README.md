@@ -20,7 +20,7 @@ Desafio:
 Participantes:
 
 - Thomás Agante
-- Thaís Maiolino
+- Thais Maiolino
 - João Pedro Portela (JP)
 - Eduardo Furtado
 - Fábio Araújo
