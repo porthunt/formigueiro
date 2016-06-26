@@ -1,0 +1,40 @@
+<header-element></header-element>
+
+<main id="campaign-list-page" ng-init="campaignListInit()">
+	
+	<div class="parallax-container">
+		<div class="container section">
+			<div class="row left">
+				<h2 class="header">Campanhas</h2>
+			</div>
+		</div>
+		<div class="parallax">
+			<img src="assets/images/banner-depot.jpg">
+		</div>
+	</div>
+
+	<div class="container">
+
+		<div class="row" id="campaigns">
+			
+			<div class="campaign col s6 m4 l3" ng-repeat="campaign in campaigns">
+				<div class="card">
+					<div class="card-image">
+						<img src="assets/images/campaigns/{{campaign.image}}">
+					</div>
+					<div class="card-content">
+						<span class="card-title">{{campaign.title}}</span><br>
+						<label>Original: <del>R$ {{campaign.originalPrice.toFixed(2)}}</del></label><br>
+						<label>Atual: R$ {{campaign.currentPrice.toFixed(2)}}</label><br>
+						<label>Menor possível: R$ {{campaign.lowestPrice.toFixed(2)}}</label>
+						<h6 class="off">Até {{calculateDiscount(campaign)}}%</h6>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+</main>
+
+<footer-element></footer-element>
