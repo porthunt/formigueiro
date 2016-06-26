@@ -32,6 +32,7 @@ def company(email=None):
         return Company(conn).retrieve()
 
 
+@app.route('/api/campaign', methods=['GET'])
 @app.route('/api/campaign/id/<campaign_id>', methods=['GET'])
 @app.route('/api/campaign/name/<name>', methods=['GET'])
 @app.route('/api/campaign/category/<category>', methods=['GET'])
@@ -46,7 +47,7 @@ def campaign(campaign_id=None, name=None, category=None, author=None):
     elif category is not None:
         return Campaign(conn).retrieve(category=category)
     else:
-        return 'campaign not found'
+        return Campaign(conn).retrieve()
 
 
 @app.route('/api/campaign/id/<campaign_id>/total', methods=['GET'])
@@ -55,6 +56,19 @@ def campaign_total(campaign_id=None):
         return 'campaign not found'
     else:
         return Campaign(conn).campaign_total(campaign_id=campaign_id)
+
+
+@app.route('/api/campaign/id/<campaign_id>/comments', methods=['GET'])
+def campaign_comments(campaign_id=None):
+    if campaign_id is None:
+        return 'campaign not found'
+    else:
+        return Campaign(conn).retrieve_comments(campaign_id=campaign_id)
+
+
+@app.route('/api/comment/id/<comment_id>', methods=['GET'])
+def comment_content(comment_id=None):
+    return Campaign(conn).retrieve_comment_content(comment_id=comment_id)
 
 
 @app.route('/api/backer/campaign_id/<campaign_id>', methods=['GET'])

@@ -32,7 +32,25 @@ class Campaign(object):
             r_url += 'by_name?key="'+kwargs['name']+'"'
         elif 'category' in kwargs:
             r_url += 'by_category?key="'+kwargs['category']+'"'
+        else:
+            r_url += 'all'
 
+        curl.setopt(curl.URL, r_url)
+        curl.setopt(curl.USERPWD, '%s:%s' % (self.conn.user, self.conn.pwd))
+        curl.setopt(curl.WRITEFUNCTION, response_buffer.write)
+        curl.perform()
+        curl.close()
+
+        resp_value = json.loads(response_buffer.getvalue())['rows']
+        return json.dumps(resp_value)
+
+    def retrieve_comments(self, campaign_id):
+        response_buffer = StringIO()
+        curl = pycurl.Curl()
+        r_url = 'https://{}.cloudant.com/{}/_design/comments/_view/by_campaign_id?key="{}"'.format(
+                                                                                            self.conn.host,
+                                                                                            self.conn.db,
+                                                                                            campaign_id)
         curl.setopt(curl.URL, r_url)
         curl.setopt(curl.USERPWD, '%s:%s' % (self.conn.user, self.conn.pwd))
         curl.setopt(curl.WRITEFUNCTION, response_buffer.write)
@@ -40,6 +58,21 @@ class Campaign(object):
         curl.close()
         resp_value = json.loads(response_buffer.getvalue())['rows']
         return json.dumps(resp_value)
+
+    def retrieve_comment_content(self, comment_id):
+        response_buffer = StringIO()
+        curl = pycurl.Curl()
+        r_url = 'https://{}.cloudant.com/{}/_design/comments/_view/by_comment_id?key="{}"'.format(
+                                                                                           self.conn.host,
+                                                                                           self.conn.db,
+                                                                                           comment_id)
+        curl.setopt(curl.URL, r_url)
+        curl.setopt(curl.USERPWD, '%s:%s' % (self.conn.user, self.conn.pwd))
+        curl.setopt(curl.WRITEFUNCTION, response_buffer.write)
+        curl.perform()
+        curl.close()
+        resp_value = json.loads(response_buffer.getvalue())['rows'][0]['value']['comment']
+        return resp_value
 
     def update(self, **kwargs):
         pass
