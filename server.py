@@ -68,12 +68,11 @@ def campaign_comments(campaign_id=None):
         return Campaign(conn).retrieve_comments(alchemyapi_credentials=alchemyapi_credentials, campaign_id=campaign_id)
 
 
-'''
 @app.route('/api/comment/id/<comment_id>', methods=['GET'])
 def comment_content(comment_id=None):
     return Campaign(conn).retrieve_comment_content(comment_id=comment_id)
 
-
+'''
 @app.route('/api/comment/id/<comment_id>/analyse', methods=['GET'])
 def analyse_comment(comment_id=None):
     return Campaign(conn).analyse_comment(alchemyapi_credentials=alchemyapi_credentials,
@@ -111,6 +110,24 @@ def add_backer():
     except:
         return 'ERROR'
 
+
+@app.route('/api/comment/add', methods=['PUT'])
+def add_comment():
+
+    try:
+        if request.json['doc_type'] != 'comment' or not request.json:
+            raise Exception('')
+
+        comment = {
+            "doc_type": request.json['doc_type'],
+            "campaign_id": request.json['campaign_id'],
+            "company_id": request.json['company_id'],
+            "comment": request.json['comment']
+        }
+        Campaign(conn).add_comment(alchemyapi_credentials, comment)
+        return 'OK'
+    except:
+        return 'ERROR'
 
 @app.route('/api/test-api')
 def test_connection():

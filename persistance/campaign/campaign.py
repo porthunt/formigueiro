@@ -80,7 +80,7 @@ class Campaign(object):
             comments.append(temp)
         return json.dumps(comments)
 
-    def __retrieve_comment_content__(self, comment_id):
+    def retrieve_comment_content(self, comment_id):
         response_buffer = StringIO()
         curl = pycurl.Curl()
         r_url = 'https://{}.cloudant.com/{}/_design/comments/_view/by_comment_id?key="{}"'.format(
@@ -95,12 +95,25 @@ class Campaign(object):
         resp_value = json.loads(response_buffer.getvalue())['rows'][0]['value']['comment']
         return resp_value
 
-    def __analyse_comment__(self, url, alchemyapi_credentials, comment_id):
+    def analyse_comment(self, url, alchemyapi_credentials, comment_id):
         try:
             data = 'apikey={}&outputMode=json&url={}/api/comment/id/{}'.format(alchemyapi_credentials['apikey'], url, comment_id)
             resp = requests.post(alchemyapi_credentials['url'], data=data)
-            return resp.json()['docSentiment']['type']
+
+            return json.dumps(resp.json())
         except:
+            return 'ERROR'
+
+    def add_comment(self, alchemyapi_credentials, json_string):
+        json.dumps(json_string)
+        my_document = self.conn.connect().create_document(json_string)
+        if my_document.exists():
+            my_document['mood'] = self.analyse_comment('http://formigueiro-back.mybluemix.net',
+                                                       alchemyapi_credentials,
+                                                       my_document['_id'])
+            my_document.save()
+            return 'OK'
+        else:
             return 'ERROR'
 
     def update(self, **kwargs):
