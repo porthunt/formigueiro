@@ -15,6 +15,7 @@
 						<h4 class="">{{campaign.value.name}}</h4>
 						<p>{{campaign.value.distributor}}</p>
 						<p>{{campaign.value.category}}</p>
+						<h6><del>R$ {{campaign.value.original_unit_price.toFixed(2)}}<label> por unidade</label></del></h6>
 						<h5>R$ {{campaign.value.discounted_unit_price.toFixed(2)}}<label> por unidade</label></h5>
 					</div>
 
@@ -86,7 +87,7 @@
 
 					<li class="collection-item">
 						<input type="text" class="new-comment" name="new-comment" ng-model="newComment" placeholder="New comment...">
-						<a href="" class="secondary-content"><i class="material-icons">send</i></a>
+						<a href="" class="secondary-content" ng-click="addComment()"><i class="material-icons">send</i></a>
 					</li>
 				</ul>
 			</div>
