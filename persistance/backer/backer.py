@@ -1,8 +1,10 @@
 import json
 import pycurl
 import StringIO
+import traceback
 
 from StringIO import StringIO
+from urllib import urlencode
 
 '''
 Class Backer
@@ -17,10 +19,19 @@ class Backer(object):
         self.conn = _conn
 
     def add(self, json_string):
-        try:
-            return 'Added ' + json.dumps(json_string)
-        except:
-            return 'ERROR Adding'
+       c = pycurl.Curl()
+       url = 'https://{}.cloudant.com/{}/_design/backer/add/'.format(self.conn.host, self.conn.db)
+       c.setopt(c.URL, url)
+
+       try:
+           postfields = urlencode(json_string)
+           c.setopt(c.POSTFIELDS, postfields)
+           c.perform()
+           c.close()
+           return 'OK'
+       except:
+           traceback.print_exc()
+           return 'ERROR'    
 
     def remove(self, company_id, campaign_id):
         pass
