@@ -1,4 +1,6 @@
 flask==0.11.1
+flask-cors==2.1.2
 cloudant==2.0.3
 configparser==3.5.0
 pycurl==7.43.0
+requests==2.10.0
