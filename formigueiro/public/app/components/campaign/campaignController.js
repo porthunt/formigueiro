@@ -30,7 +30,6 @@ app.controller('CampaignController', function($scope, $http, $routeParams){
 			//$scope.loadFromBreadcrumb();
 		})
 		.error(function(data) {
-			$scope.toggleLoading(false);
 			console.log("Error", data);
 		})
 
@@ -45,7 +44,6 @@ app.controller('CampaignController', function($scope, $http, $routeParams){
 			//$scope.loadFromBreadcrumb();
 		})
 		.error(function(data) {
-			$scope.toggleLoading(false);
 			console.log("Error", data);
 		})
 
@@ -64,7 +62,6 @@ app.controller('CampaignController', function($scope, $http, $routeParams){
 			//$scope.loadFromBreadcrumb();
 		})
 		.error(function(data) {
-			$scope.toggleLoading(false);
 			console.log("Error", data);
 		})
 
@@ -83,7 +80,6 @@ app.controller('CampaignController', function($scope, $http, $routeParams){
 			//$scope.loadFromBreadcrumb();
 		})
 		.error(function(data) {
-			$scope.toggleLoading(false);
 			console.log("Error", data);
 		})
 
@@ -176,6 +172,33 @@ app.controller('CampaignController', function($scope, $http, $routeParams){
 			break;
 
 		}
+
+	}
+
+	$scope.addComment = function() {
+
+		console.log("Add Comment");
+
+		$http.put("http://formigueiro-back.mybluemix.net/api/comment/add", {
+			"doc_type": "comment",
+			"campaign_id": $scope.campaign.id,
+			"company_id": "a7163834a5b1a3095bee3307a975dedc",
+			"comment": $scope.newComment
+		})
+		.success(function(data, status) {
+
+			console.log("Success add comment", data);
+
+			Materialize.toast('Adicionou um comentário com sucesso!', 2000)
+			$scope.campaignInit();
+
+			$scope.comments = data;
+
+			//$scope.loadFromBreadcrumb();
+		})
+		.error(function(data) {
+			console.log("Error", data);
+		})
 
 	}
 

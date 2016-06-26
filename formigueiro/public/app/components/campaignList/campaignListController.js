@@ -22,8 +22,10 @@ app.controller("CampaignListController", function($scope, $http) {
 
 	$scope.calculateDiscount = function(aCampaign) {
 
-		var temp = (aCampaign.value.original_unit_price * 100) / aCampaign.value.discounted_unit_price;
-		temp = (temp - 100) * (-1);
+		var temp = (aCampaign.value.discounted_unit_price * 100);
+		temp = temp / aCampaign.value.original_unit_price;
+		temp = temp - 100;
+		temp = temp * (-1);
 		
 		return Math.floor(temp);
 	}
