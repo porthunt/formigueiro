@@ -19,4 +19,12 @@ app.controller("IndexController", function($scope, $http) {
 		})
 	}
 
+	$scope.calculateDiscount = function(aCampaign) {
+
+		var temp = (aCampaign.value.original_unit_price * 100) / aCampaign.value.discounted_unit_price;
+		temp = (temp - 100) * (-1);
+		
+		return Math.floor(temp);
+	}
+
 });
