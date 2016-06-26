@@ -1,3 +1,5 @@
+import uuid
+
 from cloudant import Cloudant
 from cloudant.query import Query
 
@@ -17,6 +19,19 @@ class Connection(object):
 
     def disconnect(self):
         self.client.disconnect()
+
+    def register_error(self, e, author):
+        try:
+            err_code = uuid.uuid4()
+            doc = {
+                'doc_type': 'error',
+                'code': str(err_code),
+                'message': str(e)
+            }
+            self.database.create_document(doc)
+            return err_code
+        except:
+            return None
 
     def test_connection(self):
         fields = ['_id']

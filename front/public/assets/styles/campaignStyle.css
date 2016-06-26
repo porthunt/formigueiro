@@ -3,11 +3,17 @@
 }
 
 #campaign-page .parallax-container {
-	height: 100px;
+	height: 200px;
+	padding-top: 100px;
 }
 
 #campaign-page .parallax-container .section {
 	padding-top: 0;
+}
+
+#campaign-page .parallax-container h1 {
+	color: #fff;
+	text-shadow: 0 0 3px rgba(0, 0, 0, .5);
 }
 
 .product-image {
@@ -17,4 +23,13 @@
 #campaign-page .progress {
 	height: 21px;
     border-radius: 10px;
+}
+
+.qtd-picker .input-field {
+	width: 70px;
+    display: inline-block;
+}
+
+.qtd-picker .input-field input {
+	text-align: center;
 }

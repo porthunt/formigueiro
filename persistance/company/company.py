@@ -1,6 +1,6 @@
 import json
 import pycurl
-import StringIO
+#import StringIO
 
 from StringIO import StringIO
 

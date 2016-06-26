@@ -1,0 +1,12 @@
+.off {
+	color: #f00;
+	font-weight: bolder;
+}
+
+.card {
+	text-align: center !important;
+}
+
+.card .card-title {
+	text-shadow: none;
+}

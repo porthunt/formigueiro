@@ -1,3 +1,29 @@
 #index-page .parallax-container {
-	height: 300px;
+	height: 350px;
+}
+
+#index-page .header {
+	color: #fff;
+    text-shadow: 0 0 8px rgba(0, 0, 0, .8);
+}
+
+#index-page #signup-btn {
+	color: #000;
+}
+
+#index-basic-info {
+	margin-top: 20px;
+}
+
+#index-basic-info i {
+	font-size: 4.5em;
+}
+
+#index-basic-info h4 {
+	margin-top: 0;
+}
+
+#index-basic-info p {
+	text-align: justify;
+	margin-top: 0;
 }
