@@ -1,5 +1,0 @@
-app.service("MainService", function() {
-
-	
-	
-});
