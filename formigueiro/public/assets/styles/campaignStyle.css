@@ -1,0 +1,68 @@
+#campaign-page {
+	padding-top: 25px;
+}
+
+#campaign-page .product-image {
+	width: 100%;
+	height: auto;
+
+	margin-top: 30px;
+}
+
+#campaign-page .parallax-container {
+	height: 100px;
+	margin-top: 70px;
+}
+
+#campaign-page .parallax-container .section {
+	padding-top: 0;
+}
+
+#campaign-page .parallax-container h1 {
+	color: #fff;
+	text-shadow: 0 0 3px rgba(0, 0, 0, .5);
+}
+
+#campaign-page .campaign-enter {
+	padding: 15px;
+	background-color: rgba(100, 100, 100, .05);
+	border-radius: 5px;
+}
+
+.product-image {
+	height: 300px;
+}
+
+#campaign-page .progress {
+	height: 21px;
+    border-radius: 10px;
+}
+
+.qtd-picker .input-field {
+	width: 70px;
+    display: inline-block;
+}
+
+.qtd-picker .input-field input {
+	text-align: center;
+}
+
+.new-comment {
+	width: 95% !important;
+}
+
+.margin-top {
+	margin-top: 50px;
+}
+
+.positive {
+	color: #43a047;
+}
+
+.neutral {
+	color: #ffd800;
+}
+
+.negative {
+	color: red;
+}

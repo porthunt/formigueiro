@@ -1,0 +1,106 @@
+<header-element></header-element>
+
+<main id="campaign-page" ng-init="campaignInit()">
+	<div class="container">
+		<div class="row">
+
+			<div class="col s12 m8 l8">
+				<div class="row">
+
+					<div class="col s12 m6 l6">
+						<img class="product-image" src="{{campaign.value.cover}}">
+					</div>
+
+					<div class="col s12 m6 l6">
+						<h4 class="">{{campaign.value.name}}</h4>
+						<p>{{campaign.value.distributor}}</p>
+						<p>{{campaign.value.category}}</p>
+						<h5>R$ {{campaign.value.discounted_unit_price.toFixed(2)}}<label> por unidade</label></h5>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col s12 m4 l4">
+				<div class="center campaign-enter">
+					<h5>Faltam {{campaign.value.total - campaignTotal}}</h5>
+					<div class="progress">
+	      				<div class="determinate" style="width: {{calculatePercentage()}}%"></div>
+	 				</div>
+ 					<h6>{{campaignTotal}}/{{campaign.value.total}}</h6>
+
+ 					<div class="qtd-picker">
+ 						<a class="waves-effect waves-light btn-small" ng-click="qtdMinusButton()"><i class="material-icons left">remove</i></a>
+ 						<div class="input-field">
+							<input placeholder="QTD" ng-model="qtd" ng-change="qtdGetPartialTotal()" id="first_name" type="text" class="validate">
+						</div>
+ 						<a class="waves-effect waves-light btn-small" ng-click="qtdAddButton()"><i class="material-icons left">add</i></a>
+ 						<p><del>R$ {{qtdNotDiscountedPartialTotal}}</del></p>
+ 						<p>R$ {{qtdPartialTotal}}</p>
+ 					</div>
+
+ 					<a class="waves-effect waves-light btn" ng-click="joinCampaign()">Junte se a campanha</a>	
+ 				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- DESCRIÇÃO -->
+	<div class="parallax-container">
+		<div class="parallax">
+			<img src="assets/images/banner-depot.jpg">
+		</div>
+	</div>
+
+	<div class="container section white">
+		<div class="row">
+			<div class="margin-top col s12 m12 l8">
+				<h3>Descrição</h3>
+				<p>{{campaign.value.description}}</p>
+			</div>
+
+			<div class="margin-top col s12 m12 l4">
+				<h5>Últimos Colaboradores</h5>
+				<ul class="collection">
+					<li class="collection-item avatar" ng-repeat="backer in backers">
+						<i class="material-icons left circle">business</i>
+						<span class="title left">{{backer.name}}</span>
+						<br>
+						<span>{{backer.unit}} unidades</span>
+					</li>
+				</ul>
+			</div>
+
+			<div class="margin-top col s12 m12 l12">
+				<h5>Comentários</h5>
+				<ul class="collection">
+					<li class="collection-item" ng-repeat="comment in comments">
+						<i class="material-icons left circle">comment</i>
+						<span class="title left">{{comment.author[0].value.name}}</span>
+						<br>
+						<span class="right"><i class="material-icons {{comment.value.mood}}">{{fillFeel(comment.value.mood)}}</i></span>
+						<p>{{comment.value.comment}}</p>
+					</li>
+
+					<li class="collection-item">
+						<input type="text" class="new-comment" name="new-comment" ng-model="newComment" placeholder="New comment...">
+						<a href="" class="secondary-content"><i class="material-icons">send</i></a>
+					</li>
+				</ul>
+			</div>
+
+<!-- 			<div class="col s12 m12 l12">
+				<h3>Detalhes</h3>
+				<p><label>Modelo</label> MLH72xx/A</p>
+				<p><label>Distribuidora</label> Apple</p>
+			</div> -->
+				
+		</div>
+
+	</div>
+
+</main>
+
+<footer-element></footer-element>

@@ -1,0 +1,67 @@
+<header-element></header-element>
+
+<main id="index-page" ng-init="indexInit()">
+	
+	<div class="parallax-container">
+		<div class="section">
+			<div class="row center">
+				<h2 class="header">Descubra o mundo dos descontos <br> em grande quantidade</h2>
+				<a class="center waves-effect waves-light black btn" href="#/campanhas">Explore</a>
+				<a class="center waves-effect waves-light white btn" id="signup-btn" href="#/cadastro">Cadastre-se</a>
+			</div>
+		</div>
+		<div class="parallax">
+			<img src="assets/images/banner-depot.jpg">
+		</div>
+	</div>
+
+	<div class="container section white" id="index-basic-info">
+
+		<div class="row index-section">
+			
+			<div class="col s12 m6 l4 center">
+				<i class="material-icons">help</i>
+				<h4>O que é?</h4>
+				<p>O Formigueiro é o mais novo site de Crowdfund do Brail para micro e pequenas empresas.</p>
+			</div>
+
+			<div class="col s12 m6 l4 center">
+				<i class="material-icons">assignment</i>
+				<h4>Porque usar?</h4>
+				<p>Junte-se para formar uma potência no mercado!</p>
+			</div>
+
+			<div class="col s12 m6 l4 center">
+				<i class="material-icons">highlight</i>
+				<h4>Como funciona?</h4>
+				<p>Crie ou junta-se a uma campanha para obter desconto de atacado.</p>
+			</div>
+
+		</div>
+
+		<div class="row index-section">
+			<h4>Top Campanhas</h4>
+
+			<div class="campaign col s6 m4 l3" ng-repeat="campaign in campaigns">
+				<a href="#/campanha/{{campaign.id}}">
+					<div class="card">
+						<div class="card-image">
+							<img src="{{campaign.value.cover}}">
+						</div>
+						<div class="card-content">
+							<span class="card-title">{{campaign.value.name}}</span><br>
+							<label>Original: <del>R$ {{campaign.value.original_unit_price.toFixed(2)}}</del></label><br>
+							<label>Atual: R$ {{campaign.value.discounted_unit_price.toFixed(2)}}</label><br>
+							<h6 class="off">{{calculateDiscount(campaign)}}% OFF</h6>
+						</div>
+					</div>
+				</a>
+			</div>
+
+		</div>
+
+	</div>
+
+</main>
+
+<footer-element></footer-element>

@@ -1,0 +1,40 @@
+#campaign-list-page .parallax-container {
+	height: 130px;
+}
+
+#campaign-list-page .header {
+	color: #fff;
+	text-shadow: 0 0 5px rgba(0, 0, 0, .5);
+}
+
+#campaigns {
+	margin-top: 30px;
+}
+
+#campaign-list-page .card {
+	cursor: pointer;
+}
+
+#campaign-list-page .card .card-title {
+	text-shadow: none;
+	line-height: 1em !important;
+}
+
+#campaign-list-page .card .card-image {
+	padding: 20px;
+}
+
+#campaign-list-page .card {
+	height: 300px;
+}
+
+#campaign-list-page .card-image {
+	width: 100%;
+	height: 150px;
+	overflow: hidden;
+	box-shadow: inset 0 0 5px rgba(0, 0, 0, .05);
+}
+
+#campaign-list-page .card-image img {
+	width: 100%;
+}
