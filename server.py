@@ -3,6 +3,7 @@ import json
 import os
 
 from flask import Flask
+from flask import request
 from persistance.connect import Connection
 from persistance.company.company import Company
 from persistance.campaign.campaign import Campaign
@@ -47,6 +48,14 @@ def campaign(campaign_id=None, name=None, category=None, author=None):
         return 'campaign not found'
 
 
+@app.route('/api/campaign/id/<campaign_id>/total', methods=['GET'])
+def campaign_total(campaign_id=None):
+    if campaign_id is None:
+        return 'campaign not found'
+    else:
+        return Campaign(conn).campaign_total(campaign_id=campaign_id)
+
+
 @app.route('/api/backer/campaign_id/<campaign_id>', methods=['GET'])
 @app.route('/api/backer/company_id/<company_id>', methods=['GET'])
 def backer(campaign_id=None, company_id=None):
@@ -56,6 +65,22 @@ def backer(campaign_id=None, company_id=None):
         return Backer(conn).retrieve(company_id=company_id)
     else:
         return 'campaign not found'
+
+
+@app.route('/api/backer/add', methods=['POST'])
+def add_backer():
+    if not request.json:
+        return 'not a valid post'
+
+    try:
+        add_backer = {
+            'campaign_id': request.json['campaign_id'],
+            'company_id': request.json['company_id'],
+            'unit': request.json['unit']
+        }
+        return Backer(conn).add(add_backer)
+    except:
+        return 'not a valid backer json'
 
 
 @app.route('/api/test-api')
