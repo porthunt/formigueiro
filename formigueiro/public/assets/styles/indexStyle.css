@@ -28,6 +28,7 @@
 }
 
 #index-basic-info p {
+	width: 90%;
 	text-align: justify;
 	margin-top: 0;
 }
