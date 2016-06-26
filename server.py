@@ -1,21 +1,23 @@
 import configparser
 import json
 import os
-import traceback
 
 from flask import Flask
 from flask import request
+from flask_cors import CORS
 from persistance.connect import Connection
 from persistance.company.company import Company
 from persistance.campaign.campaign import Campaign
 from persistance.backer.backer import Backer
 
 app = Flask(__name__)
+CORS(app)
 app_name = 'FooBar'
 
 config = configparser.ConfigParser()
 config.read('config.ini')
 cloudant_credentials = config['cloudant']
+alchemyapi_credentials = config['alchemy-api']
 
 
 @app.route('/api')
@@ -63,12 +65,21 @@ def campaign_comments(campaign_id=None):
     if campaign_id is None:
         return 'campaign not found'
     else:
-        return Campaign(conn).retrieve_comments(campaign_id=campaign_id)
+        return Campaign(conn).retrieve_comments(alchemyapi_credentials=alchemyapi_credentials, campaign_id=campaign_id)
 
 
+'''
 @app.route('/api/comment/id/<comment_id>', methods=['GET'])
 def comment_content(comment_id=None):
     return Campaign(conn).retrieve_comment_content(comment_id=comment_id)
+
+
+@app.route('/api/comment/id/<comment_id>/analyse', methods=['GET'])
+def analyse_comment(comment_id=None):
+    return Campaign(conn).analyse_comment(alchemyapi_credentials=alchemyapi_credentials,
+                                          url="http://formigueiro-back.mybluemix.net",
+                                          comment_id=comment_id)
+'''
 
 
 @app.route('/api/backer/campaign_id/<campaign_id>', methods=['GET'])
@@ -116,7 +127,6 @@ def page_not_found(e):
 
 @app.errorhandler(500)
 def internal_server_error(e):
-    conn.register_error(e)
     return 'API error'
 
 PORT = int(os.getenv('PORT', 8000))
@@ -127,4 +137,4 @@ if __name__ == '__main__':
                       cloudant_credentials['host'],
                       cloudant_credentials['db'])
 
-    app.run(host='localhost', port=PORT, debug=True)
+    app.run(host='0.0.0.0', port=PORT)

@@ -27,16 +27,19 @@ class Company(object):
 
         if 'email' in kwargs:
             r_url += 'by_email?key="'+kwargs['email']+'"'
+        elif 'company_id' in kwargs:
+            r_url += 'by_company_id?key="' + kwargs['company_id'] + '"'
         else:
             r_url += 'all'
 
+        print(r_url)
         curl.setopt(curl.URL, r_url)
         curl.setopt(curl.USERPWD, '%s:%s' % (self.conn.user, self.conn.pwd))
         curl.setopt(curl.WRITEFUNCTION, response_buffer.write)
         curl.perform()
         curl.close()
         resp_value = json.loads(response_buffer.getvalue())['rows']
-        return json.dumps(resp_value)
+        return resp_value
 
     def update(self, **kwargs):
         pass

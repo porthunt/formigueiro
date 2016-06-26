@@ -6,6 +6,7 @@ import cloudant
 
 from StringIO import StringIO
 from urllib import urlencode
+from persistance.company.company import Company
 
 '''
 Class Backer
@@ -48,5 +49,9 @@ class Backer(object):
         curl.setopt(curl.WRITEFUNCTION, response_buffer.write)
         curl.perform()
         curl.close()
-        resp_value = json.loads(response_buffer.getvalue())['rows']
-        return json.dumps(resp_value)
+        backers = list()
+        for item in json.loads(response_buffer.getvalue())['rows']:
+            temp = Company(self.conn).retrieve(company_id=item['value']['company_id'])[0]['value']
+            temp['unit'] = item['value']['unit']
+            backers.append(temp)
+        return json.dumps(backers)
