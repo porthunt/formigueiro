@@ -6,11 +6,11 @@ Categoria: **SaaS**
 
 Público-alvo: **Pequenas e médias empresas do ramo de vendas**
 
-Proposta de valor única: **Formigueiro é uma plataforma crowdfund voltada para
-pequenas e médias empresas. Aonde elas tem a possibilidade de jutas realizarem
-grandes encomendas de produtos junto ao fornecedor, e ganharem um desconto no
+Proposta de valor única: **Formigueiro é uma plataforma de crowdfund voltada para
+pequenas e médias empresas, onde elas tem a possibilidade de, juntas, realizarem
+grandes encomendas de produtos junto ao fornecedor, e ganhar assim um desconto no
 valor final da compra. O que acaba refletindo diretamamente no valor de venda
-para o cliente final, tornando-as mais competitivas no mercado**
+para o cliente final, tornando-as mais competitivas no mercado.**
 
 Desafio:
 
