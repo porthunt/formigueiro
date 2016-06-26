@@ -16,8 +16,11 @@ class Backer(object):
     def __init__(self, _conn):
         self.conn = _conn
 
-    def add(self, company_id, campaign_id, unit):
-        pass
+    def add(self, json_string):
+        try:
+            return 'Added ' + json.dumps(json_string)
+        except:
+            return 'ERROR Adding'
 
     def remove(self, company_id, campaign_id):
         pass

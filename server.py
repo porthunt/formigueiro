@@ -1,6 +1,7 @@
 import configparser
 import json
 import os
+import traceback
 
 from flask import Flask
 from flask import request
@@ -69,6 +70,7 @@ def backer(campaign_id=None, company_id=None):
 
 @app.route('/api/backer/add', methods=['POST'])
 def add_backer():
+    print(request.json)
     if not request.json:
         return 'not a valid post'
 
@@ -80,7 +82,8 @@ def add_backer():
         }
         return Backer(conn).add(add_backer)
     except:
-        return 'not a valid backer json'
+        # traceback.print_exc()
+        return 'ERROR'
 
 
 @app.route('/api/test-api')
