@@ -1,7 +1,8 @@
 import json
 import pycurl
 import StringIO
-import traceback
+import cloudant
+
 
 from StringIO import StringIO
 from urllib import urlencode
@@ -19,19 +20,12 @@ class Backer(object):
         self.conn = _conn
 
     def add(self, json_string):
-       c = pycurl.Curl()
-       url = 'https://{}.cloudant.com/{}/_design/backer/add/'.format(self.conn.host, self.conn.db)
-       c.setopt(c.URL, url)
-
-       try:
-           postfields = urlencode(json_string)
-           c.setopt(c.POSTFIELDS, postfields)
-           c.perform()
-           c.close()
-           return 'OK'
-       except:
-           traceback.print_exc()
-           return 'ERROR'    
+        json.dumps(json_string)
+        my_document = self.conn.connect().create_document(json_string)
+        if my_document.exists():
+            return 'OK'
+        else:
+            return 'ERROR'
 
     def remove(self, company_id, campaign_id):
         pass

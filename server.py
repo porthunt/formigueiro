@@ -68,21 +68,22 @@ def backer(campaign_id=None, company_id=None):
         return 'campaign not found'
 
 
-@app.route('/api/backer/add', methods=['POST'])
+@app.route('/api/backer/add', methods=['PUT'])
 def add_backer():
-    print(request.json)
-    if not request.json:
-        return 'not a valid post'
 
     try:
+
+        if request.json['doc_type'] != 'backer' or not request.json:
+            raise Exception('')
+
         add_backer = {
+            'doc_type': request.json['doc_type'],
             'campaign_id': request.json['campaign_id'],
             'company_id': request.json['company_id'],
             'unit': request.json['unit']
         }
         return Backer(conn).add(add_backer)
     except:
-        # traceback.print_exc()
         return 'ERROR'
 
 
